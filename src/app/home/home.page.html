@@ -1,14 +1,23 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      <strong>NEWS</strong>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+<ion-content fullscreen>
+  <ion-card *ngFor="let data of articlesArray" (click) = "content(data['content'])">
+    <img [src]="data['urlToImage']">
+    <ion-card-header>
+      <ion-card-subtitle>{{ data['author'] }}</ion-card-subtitle>
+      <ion-card-title style="font-size: 1.2rem;">{{ data['title'] | uppercase }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{ data['description'] }}
+    </ion-card-content>
+    <div class="ion-padding">
+      <p>{{ data['publishedAt'] | date }}</p>
+    </div>
+  </ion-card>
 </ion-content>
